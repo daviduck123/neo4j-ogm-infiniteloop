@@ -6,6 +6,8 @@ import org.neo4j.ogm.annotation.GraphId;
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Relationship;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @NodeEntity
 public class Pet {
 	@GraphId
@@ -15,14 +17,17 @@ public class Pet {
 	private String name;
 	
 	@Relationship(type="OWNS",direction=Relationship.INCOMING)
+	@JsonIgnore
 	private Master master;
 	
 	@Relationship(type="OWNS",direction=Relationship.INCOMING)
+	@JsonIgnore
 	public Master getMaster() {
 		return master;
 	}
 	
 	@Relationship(type="OWNS",direction=Relationship.INCOMING)
+	@JsonIgnore
 	public void setMaster(Master master) {
 		this.master = master;
 	}

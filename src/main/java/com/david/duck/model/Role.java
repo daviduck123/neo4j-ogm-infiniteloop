@@ -6,6 +6,9 @@ import javax.validation.constraints.NotNull;
 
 import org.neo4j.ogm.annotation.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+
 
 @NodeEntity
 public class Role {
@@ -17,6 +20,7 @@ public class Role {
 	
 	
 	@Relationship(type = "HAS_ROLE", direction=Relationship.INCOMING)
+	@JsonIgnore
 	private Set<UserRole> userRoles;
 	
 	public Long getId() {
@@ -37,11 +41,13 @@ public class Role {
 	}
 
 	@Relationship(type = "HAS_ROLE", direction=Relationship.INCOMING)
+	@JsonIgnore
 	public Set<UserRole> getUserRoles() {
 		return userRoles;
 	}
 
 	@Relationship(type = "HAS_ROLE", direction=Relationship.INCOMING)
+	@JsonIgnore
 	public void setUserRoles(Set<UserRole> userRoles) {
 		this.userRoles = userRoles;
 	}

@@ -81,24 +81,29 @@ public class UserController {
 	
 	@RequestMapping(value = "/master", method = RequestMethod.GET)
 	public @ResponseBody Iterable<Master> getMaster() {
-		masterRepository.deleteAll();
-		petRepository.deleteAll();
+//		masterRepository.deleteAll();
+//		petRepository.deleteAll();
+//		
+//		Master master=masterRepository.findOne((long)36);
+//		master.setName("Vincent");
+//		masterRepository.save(master);
 		
-		
-		Master master=new Master();
-		master.setName("Vincent");
-		masterRepository.save(master);
-		
-		Pet pet=new Pet();
-		pet.setName("Cat");
-		pet.setMaster(master);
-		petRepository.save(pet);
-		
-		Set<Pet> pets=new HashSet<Pet>();
-		pets.add(pet);
-		
-		master.setPets(pets);
-		masterRepository.save(master);
+//		Pet pet=new Pet();
+//		pet.setName("Dog");
+//		pet.setMaster(masterRepository.findOne((long)36));
+//		petRepository.save(pet);
+//		
+//		Pet pet2=new Pet();
+//		pet2.setName("Dog");
+//		pet2.setMaster(masterRepository.findOne((long)36));
+//		petRepository.save(pet2);
+//		
+//		Set<Pet> pets=new HashSet<Pet>();
+//		pets.add(pet);
+//		pets.add(pet2);
+//		
+//		master.setPets(pets);
+//		masterRepository.save(master);
 		Iterable<Master> results = masterRepository.findAll();
 		return results;
 	}
