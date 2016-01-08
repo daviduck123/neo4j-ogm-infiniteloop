@@ -9,16 +9,6 @@ import org.neo4j.ogm.annotation.*;
 
 @NodeEntity
 public class Role {
-	public static final String ROLE_ADMIN = "ROLE_ADMIN";
-	public static final String ROLE_Consumer = "ROLE_Consumer";
-	public static final String ROLE_Technical_Consultant = "ROLE_Technical Consultant";
-	public static final String ROLE_Business_Consultant = "ROLE_Business Consultant";
-	public static final String ROLE_Business_Consultant_Operation = "ROLE_Operation Dashboard";
-	public static final String ROLE_Business_Consultant_Business = "ROLE_Business Dashboard";
-	public static final String ROLE_Report_Cost_Tracking = "ROLE_Report Cost Tracking";
-	public static final String ROLE_Report_5Days_LAH = "ROLE_Report 5-Days LAH";
-	public static final String ROLE_Report_NPTSummary_LessonsLearned = "ROLE_Report NPT Summary & Lessons Learned";
-	
 	@GraphId
 	Long id;
 	

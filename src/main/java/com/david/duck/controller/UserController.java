@@ -55,11 +55,11 @@ public class UserController {
 //		userRepository.save(user);
 //		
 //		Role role=new Role();
-//		role.setName(role.ROLE_Report_NPTSummary_LessonsLearned);
+//		role.setName("Admin");
 //		roleRepository.save(role);
 //
 //		Role role2=new Role();
-//		role2.setName(role.ROLE_Report_5Days_LAH);
+//		role2.setName("Admin2");
 //		roleRepository.save(role2);
 //		
 //		UserRole userRole=new UserRole(user,role);
