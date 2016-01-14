@@ -33,6 +33,7 @@ public class User {
 	private Boolean active;
 	
 	@Relationship(type = "HAS_ROLE")
+	@JsonIgnore
 	private Set<UserRole> userRoles;
 
 	public Long getId() {
@@ -92,16 +93,24 @@ public class User {
 	}
 	
 	@Relationship(type = "HAS_ROLE")
+	@JsonIgnore
 	public Set<UserRole> getRoles() {
 		return userRoles;
 	}
 
 	@Relationship(type = "HAS_ROLE")
+	@JsonIgnore
 	public void setRoles(Set<UserRole> roles) {
 		this.userRoles = roles;
 	}
 
 	public User(){
 		super();
+	}
+	
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", username=" + username + ", password=" + password + ", firstName=" + firstName
+				+ ", lastName=" + lastName + ", role=" + role + ", active=" + active + ", userRoles=" + userRoles + "]";
 	}
 }

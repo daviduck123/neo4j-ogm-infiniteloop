@@ -46,6 +46,7 @@ public class UserRole {
 	public UserRole(){
 		super();
 	}
+	
 	public UserRole(User user, Role role) {
 		super();
 		this.user = user;

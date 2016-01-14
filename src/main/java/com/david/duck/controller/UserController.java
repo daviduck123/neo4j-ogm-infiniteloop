@@ -1,21 +1,30 @@
 package com.david.duck.controller;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.neo4j.helpers.collection.IteratorUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.neo4j.template.Neo4jTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.david.duck.model.Calendar;
 import com.david.duck.model.Master;
 import com.david.duck.model.Pet;
-import com.david.duck.model.Role;
 import com.david.duck.model.User;
 import com.david.duck.model.UserRole;
+import com.david.duck.repository.CalendarRepository;
 import com.david.duck.repository.MasterRepository;
 import com.david.duck.repository.PetRepository;
 import com.david.duck.repository.RoleRepository;
@@ -41,71 +50,39 @@ public class UserController {
 	@Autowired
 	private PetRepository petRepository;
 	
+	@Autowired
+	private CalendarRepository calendarRepository;
+	
 	Neo4jTemplate template;
 	
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public @ResponseBody Iterable<User> getUsers() {
-//		User user=new User();
-//		user.setFirstName("Dennis");
-//		user.setLastName("Prasetia");
-//		user.setPassword("admin");
-//		user.setRole("admin");
-//		user.setUsername("dennisbongchan");
-//		userRepository.save(user);
-//		
-//		Role role=new Role();
-//		role.setName("Admin");
-//		roleRepository.save(role);
-//
-//		Role role2=new Role();
-//		role2.setName("Admin2");
-//		roleRepository.save(role2);
-//		
-//		UserRole userRole=new UserRole(user,role);
-//		userRoleRepository.save(userRole);
-//		
-//		Set<UserRole> listUserRole=new HashSet<UserRole>();
-//		listUserRole.add(userRole);
-//		
-//		
-//		user.setRoles(listUserRole);
-//		role.setUserRoles(listUserRole);
-//		userRepository.save(user);
-//		roleRepository.save(role);
+	public @ResponseBody String getUsers() {
 
 		Iterable<User> results = userRepository.findAll();
+		List<User> userList = new ArrayList<User>(IteratorUtil.asCollection(results));
 		
-		return results;
+		return userList.get(0).toString();
 	}
 	
 	@RequestMapping(value = "/master", method = RequestMethod.GET)
-	public @ResponseBody Iterable<Master> getMaster() {
-//		masterRepository.deleteAll();
-//		petRepository.deleteAll();
-//		
-//		Master master=masterRepository.findOne((long)36);
-//		master.setName("Vincent");
-//		masterRepository.save(master);
-		
-//		Pet pet=new Pet();
-//		pet.setName("Dog");
-//		pet.setMaster(masterRepository.findOne((long)36));
-//		petRepository.save(pet);
-//		
-//		Pet pet2=new Pet();
-//		pet2.setName("Dog");
-//		pet2.setMaster(masterRepository.findOne((long)36));
-//		petRepository.save(pet2);
-//		
-//		Set<Pet> pets=new HashSet<Pet>();
-//		pets.add(pet);
-//		pets.add(pet2);
-//		
-//		master.setPets(pets);
-//		masterRepository.save(master);
+	public @ResponseBody Iterable<Pet> getMaster() {
 		Iterable<Master> results = masterRepository.findAll();
-		return results;
+		List<Master> masterList = new ArrayList<Master>(IteratorUtil.asCollection(results));
+		
+		return masterList.get(0).getPets();
 	}
-
+		
+	
+	@RequestMapping(value = "/date", method = RequestMethod.GET)
+	public @ResponseBody Iterable<Calendar> dateTesting() {
+//		Calendar calendar=new Calendar();
+//		calendar.setDateLong(new Date());
+//		calendar.setDateString(new Date());
+//		calendarRepository.save(calendar);
+//		
+		Iterable<Calendar> results = calendarRepository.findAll(1);
+		List<Calendar> calendarList = new ArrayList<Calendar>(IteratorUtil.asCollection(results));
+		return calendarList;
+	}
 }

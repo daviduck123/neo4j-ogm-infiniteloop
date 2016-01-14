@@ -8,8 +8,6 @@ import org.neo4j.ogm.annotation.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-
-
 @NodeEntity
 public class Role {
 	@GraphId
